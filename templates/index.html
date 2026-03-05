@@ -1,0 +1,351 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  HERO SECTION                                               -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="Hero introduction">
+  <div class="hero__bg-grid" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+  <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
+
+  <div class="hero__inner">
+    <div class="hero__content">
+      <p class="hero__greeting reveal-up">
+        <span class="hero__greeting-dot"></span>
+        Available for opportunities · {{ profile.location }}
+      </p>
+
+      <h1 class="hero__name reveal-up reveal-delay-1">
+        {{ profile.name }}
+      </h1>
+
+      <div class="hero__typed-wrapper reveal-up reveal-delay-2" aria-live="polite">
+        <span class="hero__typed-prefix">&gt; </span>
+        <span id="typedTarget" class="hero__typed"></span>
+      </div>
+
+      <p class="hero__bio reveal-up reveal-delay-3">
+        {{ profile.about | truncate(160) }}
+      </p>
+
+      <div class="hero__actions reveal-up reveal-delay-4">
+        <a href="#projects" class="btn btn--primary">
+          View My Work <span class="btn-arrow">→</span>
+        </a>
+       <a href="{{ profile.github }}" class="btn btn--outline" target="_blank" rel="noopener">
+  <span class="btn-icon">↗</span> View GitHub
+</a>
+      </div>
+
+      <div class="hero__tech-stack reveal-up reveal-delay-5" aria-label="Core technologies">
+        {% set tech = ['Kubernetes', 'Jenkins', 'Docker', 'Terraform', 'AWS', 'Linux'] %}
+        {% for t in tech %}
+          <span class="hero__tech-tag">{{ t }}</span>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="hero__terminal reveal-right" aria-label="Terminal preview" role="img">
+      <div class="terminal">
+        <div class="terminal__header">
+          <span class="terminal__dot terminal__dot--red"></span>
+          <span class="terminal__dot terminal__dot--yellow"></span>
+          <span class="terminal__dot terminal__dot--green"></span>
+          <span class="terminal__title">annappa@devops:~</span>
+        </div>
+        <div class="terminal__body">
+          <div class="terminal__line">
+            <span class="terminal__prompt">$</span>
+            <span class="terminal__cmd"> kubectl get pods --all-namespaces</span>
+          </div>
+          <div class="terminal__output">
+            <span class="terminal__ns">production</span>   api-gateway-7d9f    <span class="terminal__running">Running</span>   42d<br/>
+            <span class="terminal__ns">production</span>   worker-node-2xk9    <span class="terminal__running">Running</span>   42d<br/>
+            <span class="terminal__ns">staging</span>      pipeline-runner     <span class="terminal__running">Running</span>   1d
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__prompt">$</span>
+            <span class="terminal__cmd"> terraform apply --auto-approve</span>
+          </div>
+          <div class="terminal__output terminal__output--success">
+            Apply complete! Resources: 12 added, 0 changed, 0 destroyed.
+          </div>
+          <div class="terminal__line">
+            <span class="terminal__prompt">$</span>
+            <span class="terminal__cursor">█</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats Bar -->
+  <div class="hero__stats" aria-label="Key statistics">
+    {% for stat in stats %}
+    <div class="hero__stat reveal-up">
+      <span class="hero__stat-value">{{ stat.value }}<span class="hero__stat-unit">{{ stat.unit }}</span></span>
+      <span class="hero__stat-label">{{ stat.label }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  ABOUT SECTION                                              -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="about section" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-label">01 / About</span>
+      <h2 class="section-title" id="about-heading">The Story Behind<br/>the Stack</h2>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__text reveal-left">
+        <p class="about__lead">{{ profile.about }}</p>
+        <div class="about__philosophy">
+          <div class="about__philosophy-item">
+            <span class="about__philosophy-icon">🏭</span>
+            <div>
+              <strong>Production-First Mindset</strong>
+              <p>Years of L2 support taught me to build systems that stay up, not just systems that start up.</p>
+            </div>
+          </div>
+          <div class="about__philosophy-item">
+            <span class="about__philosophy-icon">🔁</span>
+            <div>
+              <strong>Automate Everything</strong>
+              <p>If a human has to do it more than twice, there should be a pipeline for it.</p>
+            </div>
+          </div>
+          <div class="about__philosophy-item">
+            <span class="about__philosophy-icon">📐</span>
+            <div>
+              <strong>Infrastructure as Code</strong>
+              <p>Infrastructure should be versioned, reviewed, and repeatable — just like application code.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="about__card-wrap reveal-right">
+        <div class="glass-card about__card">
+          <div class="about__card-header">
+            <div class="about__avatar">AM</div>
+            <div>
+              <h3 class="about__card-name">{{ profile.name }}</h3>
+              <p class="about__card-title">{{ profile.title }}</p>
+            </div>
+          </div>
+          <div class="about__card-details">
+            <div class="about__card-detail">
+              <span class="about__card-icon">📍</span>
+              <span>{{ profile.location }}</span>
+            </div>
+            <div class="about__card-detail">
+              <span class="about__card-icon">🏢</span>
+              <span>Wipro Technologies</span>
+            </div>
+            <div class="about__card-detail">
+              <span class="about__card-icon">⏱️</span>
+              <span>8.5 Years Experience</span>
+            </div>
+            <div class="about__card-detail">
+              <span class="about__card-icon">🎯</span>
+              <span>Open to Opportunities</span>
+            </div>
+          </div>
+          <a href="{{ profile.github }}" class="btn btn--outline" target="_blank" rel="noopener">
+  <span class="btn-icon">↗</span> View GitHub
+</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  SKILLS SECTION                                             -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="skills section" id="skills" aria-labelledby="skills-heading">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-label">02 / Skills</span>
+      <h2 class="section-title" id="skills-heading">Technical<br/>Arsenal</h2>
+    </div>
+
+    <div class="skills__grid">
+      {% for skill in skills %}
+      <div class="skill-card glass-card reveal-up" style="--accent: {{ skill.color }}; --delay: {{ loop.index0 * 0.08 }}s">
+        <div class="skill-card__header">
+          <span class="skill-card__icon" aria-hidden="true">{{ skill.icon }}</span>
+          <h3 class="skill-card__category">{{ skill.category }}</h3>
+        </div>
+        <ul class="skill-card__items" role="list">
+          {% for item in skill.tools %}
+          <li class="skill-card__item">
+            <span class="skill-card__bullet" style="background: {{ skill.color }}"></span>
+            {{ item }}
+          </li>
+          {% endfor %}
+        </ul>
+        <div class="skill-card__glow" aria-hidden="true"></div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  EXPERIENCE SECTION                                         -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="experience section" id="experience" aria-labelledby="experience-heading">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-label">03 / Experience</span>
+      <h2 class="section-title" id="experience-heading">Career<br/>Trajectory</h2>
+    </div>
+
+    {% for company in experience %}
+    <div class="company-block reveal-up">
+      <div class="company-header glass-card">
+        <div class="company-logo">{{ company.logo_initial }}</div>
+        <div class="company-info">
+          <h3 class="company-name">{{ company.company }}</h3>
+          <span class="company-tenure">{{ company.duration }} Total Tenure</span>
+        </div>
+      </div>
+
+      <div class="roles-timeline">
+        {% for role in company.roles %}
+        <article class="role-card glass-card reveal-up" 
+                 data-type="{{ role.type }}"
+                 style="--delay: {{ loop.index0 * 0.12 }}s"
+                 aria-labelledby="role-{{ loop.index }}">
+          <div class="role-card__connector" aria-hidden="true">
+            <span class="role-card__dot"></span>
+            {% if not loop.last %}<span class="role-card__line"></span>{% endif %}
+          </div>
+          <div class="role-card__content">
+            <div class="role-card__meta">
+              <span class="role-card__period">{{ role.period }}</span>
+              <span class="role-card__type role-card__type--{{ role.type }}">
+                {% if role.type == 'devops' %}⚙️ DevOps
+                {% elif role.type == 'support' %}🛡️ L2 Support
+                {% else %}🧪 QA Testing
+                {% endif %}
+              </span>
+            </div>
+            <h4 class="role-card__title" id="role-{{ loop.index }}">{{ role.title }}</h4>
+            <p class="role-card__project">
+              <span class="role-card__project-label">Project:</span> {{ role.project }}
+            </p>
+            <ul class="role-card__highlights" role="list">
+              {% for h in role.highlights %}
+              <li class="role-card__highlight">
+                <span class="role-card__check" aria-hidden="true">▸</span>
+                {{ h }}
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  PROJECTS SECTION                                           -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="projects section" id="projects" aria-labelledby="projects-heading">
+  <div class="container">
+    <div class="section-header reveal-up">
+      <span class="section-label">04 / Projects</span>
+      <h2 class="section-title" id="projects-heading">Featured<br/>Work</h2>
+    </div>
+
+    <div class="projects__grid">
+      {% for project in projects %}
+      <article class="project-card glass-card reveal-up"
+               style="--accent: {{ project.color }}; --delay: {{ loop.index0 * 0.1 }}s"
+               aria-labelledby="proj-{{ loop.index }}">
+        <div class="project-card__top">
+          <span class="project-card__icon" aria-hidden="true">{{ project.icon }}</span>
+          <div class="project-card__links">
+            <a href="{{ project.github }}" class="project-card__link" aria-label="View {{ project.title }} on GitHub" target="_blank" rel="noopener">
+              ↗
+            </a>
+          </div>
+        </div>
+
+        <h3 class="project-card__title" id="proj-{{ loop.index }}">{{ project.title }}</h3>
+        <p class="project-card__subtitle">{{ project.subtitle }}</p>
+        <p class="project-card__desc">{{ project.description }}</p>
+
+        <ul class="project-card__highlights" role="list">
+          {% for h in project.highlights %}
+          <li>
+            <span aria-hidden="true">→</span> {{ h }}
+          </li>
+          {% endfor %}
+        </ul>
+
+        <div class="project-card__tags" aria-label="Technologies used">
+          {% for tag in project.tags %}
+          <span class="project-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="project-card__glow" aria-hidden="true"></div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════════════════════ -->
+<!--  CTA SECTION                                                -->
+<!-- ═══════════════════════════════════════════════════════════ -->
+<section class="cta section" id="contact" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="cta__inner glass-card reveal-up">
+      <div class="cta__orb" aria-hidden="true"></div>
+      <p class="cta__label">Let's Connect</p>
+      <h2 class="cta__heading" id="cta-heading">
+        Ready to Build<br/>Something Solid?
+      </h2>
+      <p class="cta__body">
+        Whether you need a DevOps engineer who's been in the trenches of production support
+        or someone to architect your next CI/CD infrastructure — let's talk.
+      </p>
+      <div class="cta__actions">
+        <a href="mailto:annappa.m@example.com" class="btn btn--primary btn--lg">
+          Get In Touch <span class="btn-arrow">→</span>
+        </a>
+        <a href="{{ profile.github }}" class="btn btn--outline" target="_blank" rel="noopener">
+  <span class="btn-icon">↗</span> View GitHub
+</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Pass typed strings from Flask to JS
+  window.TYPED_STRINGS = {{ profile.typed_strings | tojson }};
+</script>
+{% endblock %}

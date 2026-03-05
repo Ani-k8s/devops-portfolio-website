@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Meta Tags -->
+  <title>{% block title %}Annappa M — DevOps Engineer{% endblock %}</title>
+  <meta name="description" content="Annappa M — DevOps Engineer with 8.5 years of experience in CI/CD pipelines, Kubernetes, AWS, Terraform, and cloud infrastructure automation." />
+  <meta name="keywords" content="DevOps Engineer, Kubernetes, Jenkins, Docker, AWS, Terraform, CI/CD, Annappa M, Davanagere" />
+  <meta name="author" content="Annappa M" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Annappa M — DevOps Engineer" />
+  <meta property="og:description" content="8.5 years of enterprise IT experience. Building rock-solid CI/CD pipelines, containerized environments, and automated infrastructures." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="{{ request.url }}" />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="{{ request.url }}" />
+
+  <!-- Fonts: Clash Display + IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+
+  <!-- ── Navigation ──────────────────────────────────────────────── -->
+  <nav class="nav" id="navbar" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+      <a href="#hero" class="nav__logo" aria-label="Annappa M Home">
+        <span class="nav__logo-bracket">[</span>AM<span class="nav__logo-bracket">]</span>
+      </a>
+
+      <button class="nav__hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#skills" class="nav__link">Skills</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li>
+          <a href="{{ profile.github }}" class="nav__resume-btn" target="_blank" rel="noopener" aria-label="View GitHub Repository">
+  <span class="btn-icon">↗</span> GitHub
+</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Main Content ────────────────────────────────────────────── -->
+  <main id="main-content">
+    {% block content %}{% endblock %}
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────────────── -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__inner">
+      <div class="footer__left">
+        <span class="footer__logo">[AM]</span>
+        <p class="footer__tagline">Building stability, not just pipelines.</p>
+      </div>
+      <div class="footer__center">
+        <p class="footer__copy">
+          © <span id="footerYear"></span> Annappa M · Davanagere, Karnataka
+        </p>
+      </div>
+      <div class="footer__right">
+        <a href="https://github.com/annappa-m" class="footer__social" aria-label="GitHub" target="_blank" rel="noopener">GH</a>
+        <a href="https://linkedin.com/in/annappa-m" class="footer__social" aria-label="LinkedIn" target="_blank" rel="noopener">LI</a>
+        <a href="mailto:annappa.m@example.com" class="footer__social" aria-label="Email">@</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── Scripts ────────────────────────────────────────────────── -->
+  <!-- Typed.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
